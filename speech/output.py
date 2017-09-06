@@ -3,7 +3,7 @@
 
 import os
 import telepot
-from config import get_config
+from config import get_config, get_ids
 
 bot = telepot.Bot('437025391:AAEjwLO-Mt8jmAQEFjtIikxWR4x8KaB22fI')
 
@@ -13,5 +13,4 @@ def say(respuesta):
 	os.system(command)
 	os.system("aplay temp/out.wav")
 	if get_config.get_config()["modo"] == "texto":
-		bot.sendMessage("351857770", respuesta)
-
+		bot.sendMessage(get_ids.get_ids()["TELEGRAM_CHAT"], respuesta)
