@@ -33,7 +33,7 @@ def get_clima_actual(frase):
   response = urllib.urlopen(direccion)
   data = json.loads(response.read())
   estado = traducir_weather(data['weather'][0]['description'])
-  return "En la ciudad de " + str(ciudad) + " hoy el clima es " + str(estado) + ". Con una temperatura de entre " + str(data.get('main').get('temp_min')) + " y " + str(data.get('main').get('temp_max')) + str(" grados centígrados.")
+  return "En la ciudad de " + str(ciudad) + " hoy el clima es " + str(estado) + ". Con una temperatura de entre " + str(data.get('main').get('temp_min')-273.15) + " y " + str(data.get('main').get('temp_max')-273.15) + str(" grados centígrados.")
   
 def get_clima(frase):
   ciudad = get_ciudad_from_frase(frase)
