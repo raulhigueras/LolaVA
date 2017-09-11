@@ -3,10 +3,10 @@
 
 import datetime
 from random import randint
-from config import get_config
+from config import profile
 from modules import mconversation_res
 
-nombre = get_config.get_config()["nombre"]
+nombre = profile.get_config()["nombre"]
 
 greetings = mconversation_res.greetings
 farewells = mconversation_res.farewells

@@ -1,6 +1,5 @@
 import pickle
-from speech import output
-from speech import input
+from speech import input, output
     
 def change_ids():
 	with open('config/ids.pickle', 'rb') as handle:
@@ -18,4 +17,18 @@ def change_ids():
     		pickle.dump(ids, handle, protocol=pickle.HIGHEST_PROTOCOL)
     
   	return ("Perfecto, he guardado tus nuevos IDs")
+
+def get_ids():
+        with open('config/ids.pickle', 'rb') as handle:
+                return pickle.load(handle)
+
+def new_ids():
+	ids = {
+        	"RSS2JSON":"",
+       		"OPENWEATHERMAP":"",
+        	"TELEGRAM_CHAT":"",
+	}
+
+	with open('ids.pickle', 'wb') as handle:
+	        pickle.dump(ids, handle, protocol=pickle.HIGHEST_PROTOCOL)
 

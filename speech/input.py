@@ -8,21 +8,22 @@ import random
 import datetime
 import telepot
 
-from config import get_config, get_ids
+from config import get_config
 
 bot = telepot.Bot('437025391:AAEjwLO-Mt8jmAQEFjtIikxWR4x8KaB22fI')
 
 def ask():
-	modo = get_config.get_config()["modo"]
+	modo = get_config.get_profile()["modo"]
 	if modo == "texto":
-        	bot.sendMessage(get_ids.get_ids()["TELEGRAM_CHAT"], "Di algo!")
-        	response = bot.getUpdates()
-        	num = len(response)
-        	while len(bot.getUpdates()) == num:
+		print "Esperando mensaje"
+        	bot.sendMessage(get_config.get_ids()["TELEGRAM_CHAT"], "Di algo!")
+        	response = bot.getUpdates(offset=-5)
+        	last_id = response[-1]["update_id"]
+		while last_id == bot.getUpdates(offset=-5)[-1]["update_id"]:
                 	time.sleep(3)
-        	print "Nuevo mensaje"
+        	print "---"
         	response =  bot.getUpdates()
-        	return response[-1]["message"]["text"]
+        	return response[-1]["message"]["text"].lower()
 	elif modo == "audio":
 		r = sr.Recognizer()
 		with sr.Microphone() as source:

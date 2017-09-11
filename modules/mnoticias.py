@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 #Módulo que busca noticias recientes del periódico seleccionado en la configuración
 
-from config import get_config
+from config import profile, ids
 
 import urllib
 import json
 
 def get_noticias():
-  periodico = get_config.get_config()['periodico']
-  api_key = " ## KEY DE LA API ## "
+  periodico = profile.get_config()['periodico']
+  api_key = ids.get_ids()["RSS2JSON"]
   if periodico == "el pais":
     link = "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fep00.epimg.net%2Frss%2Felpais%2Fportada.xml&api_key=" + api_key
   elif periodico == "el mundo": 

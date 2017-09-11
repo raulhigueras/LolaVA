@@ -1,6 +1,13 @@
 # Lola
 Asistente Virtual para Raspberry Pi totalmente en español.
 
+## Novedades de la versión 0.2
+	- Se ha añadido la carpeta para subprocesos, para poder ejecutar scripts en segundo plano.
+	- Añadida la opción de crear alarmas.
+	- Cambio entero del encoding del programa, cambiando el encoding del sistema de 'ascii' a 'utf-8'.
+	- Cambios internos que hacen más legible la carpeta de configuración.
+	- Corrección de bugs menores.
+
 ## Para funcionar completamente, el asistente utiliza:
 	- El sistema STT de Google (versión de prueba, con limitaciones).
 	- El bot de telegram "LolaVA".
@@ -25,9 +32,14 @@ Asistente Virtual para Raspberry Pi totalmente en español.
 	Ejemplo: "Operar 4 elevado a 6".
 	Ejemplo: "Operar raíz 3 de 27".
 	
-	6. Otras funciones: responde a preguntas básicas com saludos y despedidas.
+	6. Conversación: responde a preguntas o demandas concretas con respuestas concretas
+	Ejemplo: "¿Conoces algún chiste?"
+
+	7. Funciones adicionales como: alarma.
+	Ejemplo: "Quiero configurar una nueva alarma"
 	
 ## Requisitos para instalar en raspberry pi.
+	- Tener instalado ALSA sound para linux.
 	- Módulo python SpeechRecognition para el STT.
 	- Módulo python de Telegram para la interacción con el bot.
 	- Paquete PicoTTS.

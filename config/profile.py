@@ -1,13 +1,14 @@
+# encoding=utf8
+
 import pickle
 from speech import output
 from speech import input
     
 def change_config():
-	with open('config/profile.pickle', 'rb') as handle:
-		opciones = pickle.load(handle)
+	opciones = get_config()
     
-  	output.say("A continuacion voy a cambiar la configuracion:")
-  	output.say("Cual es tu nombre?:")
+  	output.say("A continuacion voy a cambiar la configuración:")
+  	output.say("¿Cual es tu nombre?:")
 	opciones["nombre"] = input.ask()
 	output.say("Cual es tu periodico favorito?")
 	opciones["periodico"] = input.ask()
@@ -34,3 +35,21 @@ def change_mode():
     		pickle.dump(opciones, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
   	return "El modo se ha cambiado, ahora es: " + opciones["modo"]
+
+
+def get_config():
+        with open('config/profile.pickle', 'rb') as handle:
+                return pickle.load(handle)
+
+def new_config():
+	opciones = {
+        	"nombre":"",
+        	"periodico":"",
+	        "ciudad":"",
+        	"asistente":"",
+	        "modo":"texto"
+	}
+
+	with open('profile.pickle', 'wb') as handle:
+        	pickle.dump(opciones, handle, protocol=pickle.HIGHEST_PROTOCOL)
+

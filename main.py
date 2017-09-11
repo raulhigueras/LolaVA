@@ -3,10 +3,17 @@
 
 from speech import input, output
 from modules import mtime, mweather, mcalculator, mwiki, mnoticias, mconversation
-from config import change_config, get_config
+from config import get_config, profile, alarm
+import sys
+
+reload(sys)
+print sys.getdefaultencoding()
+sys.setdefaultencoding('utf-8')
+reload(sys)
+print sys.getdefaultencoding()
 
 def search(q):
-	
+		
 	#if "traducir" in q or "traduce" in q or "traduceme" in q:
         #	return mtranslator.traducir(q)
 	
@@ -45,10 +52,13 @@ def search(q):
 		return mnoticias.get_noticias()
 	
 	elif "cambiar configuracion" in q:
-		return change_config.change_config()
+		return profile.change_config()
 
 	elif "cambiar" in q and "modo" in q:
-		return change_config.change_mode()
+		return profile.change_mode()
+
+	elif "alarma" in q:
+		return alarm.change_alarma()
 	
 	else:
 		if mconversation.pregunta(q) != 0:
@@ -59,9 +69,9 @@ def search(q):
 
 while 1:
 
-	if get_config.get_config()["modo"] == "audio":
+	if get_config.get_profile()["modo"] == "audio":
 	        hey = input.ask().lower()
-        	while( "hola %s" % (get_config.get_config()["asistente"].lower()) not in hey):
+        	while( "hola %s" % (get_config.get_profile()["asistente"].lower()) not in hey):
 			input.ask().lower()
 
 	#print "beeeep"	
