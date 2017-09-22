@@ -2,15 +2,16 @@
 # Script principal que relaciona el input del STT con el módulo adecuado y envía un output al TTS
 
 from speech import input, output
-from modules import mtime, mweather, mcalculator, mwiki, mnoticias, mconversation
+from modules import mtime, mweather, mcalculator, mwiki, mnoticias, mconversation, mrandom
 from config import get_config, profile, alarm
-import sys
+import sys, os, time
 
 reload(sys)
-print sys.getdefaultencoding()
 sys.setdefaultencoding('utf-8')
 reload(sys)
-print sys.getdefaultencoding()
+
+os.system("aplay resources/sound1.wav")
+output.say("Hola, soy Lola. ¿En qué puedo ayudarte?")
 
 def search(q):
 		
@@ -26,10 +27,13 @@ def search(q):
 	elif "hora" in q:
 		return mtime.current_time()
 		
-	elif "clima" in q:
+	elif "clima" in q or ("que" in q and "tiempo" in q) or ("como" in q and "tiempo" in q):
 		return mweather.get_clima_actual(q)
 	
-	elif "operar" in q:
+	elif "temperatura" in q or ("hace" in q and "calor" in q) or ("hace" in q and "frio" in q):
+		return mweather.get_temperatura_actual(q) 
+
+	elif "calcular" in q:
 		if "mas" in q:# or "más" in q:
 			return mcalculator.sumar(q)
 		elif "menos" in q:
@@ -50,6 +54,12 @@ def search(q):
 	
 	elif "noticias" in q:
 		return mnoticias.get_noticias()
+
+	elif "tira un dado" in q or "tirar un dado" in q or "lanzar un dado" in q or "lanza un dado" in q:
+		return mrandom.dado()
+
+	elif "tira una moneda" in q or "tirar una moneda" in q or "lanza una moneda" in q or "lanzar una moneda" in q:
+		return mrandom.moneda()
 	
 	elif "cambiar configuracion" in q:
 		return profile.change_config()
@@ -69,10 +79,9 @@ def search(q):
 
 while 1:
 
-	if get_config.get_profile()["modo"] == "audio":
-	        hey = input.ask().lower()
-        	while( "hola %s" % (get_config.get_profile()["asistente"].lower()) not in hey):
-			input.ask().lower()
+#	if get_config.get_profile()["modo"] == "audio":
+#		while(not input.listen()):
+#			time.sleep(3)
 
 	#print "beeeep"	
 	question = input.ask().lower()

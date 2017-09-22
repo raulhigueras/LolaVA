@@ -43,10 +43,10 @@ def get_config():
 
 def new_config():
 	opciones = {
-        	"nombre":"",
-        	"periodico":"",
-	        "ciudad":"",
-        	"asistente":"",
+        	"nombre":"Raúl",
+        	"periodico":"el pais",
+	        "ciudad":"Barcelona",
+        	"asistente":"lola",
 	        "modo":"texto"
 	}
 
