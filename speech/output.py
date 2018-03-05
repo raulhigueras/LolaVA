@@ -5,7 +5,7 @@ import os
 import telepot
 from config import get_config
 
-bot = telepot.Bot('437025391:AAEjwLO-Mt8jmAQEFjtIikxWR4x8KaB22fI')
+bot = telepot.Bot('BOT_KEY')
 
 def say(respuesta):
 	print respuesta

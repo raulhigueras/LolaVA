@@ -6,7 +6,7 @@ import speech_recognition as sr
 import time, datetime, telepot, os
 from config import get_config
 
-bot = telepot.Bot('437025391:AAEjwLO-Mt8jmAQEFjtIikxWR4x8KaB22fI')
+bot = telepot.Bot('BOT_KEY')
 
 def ask():
 	modo = get_config.get_profile()["modo"]
